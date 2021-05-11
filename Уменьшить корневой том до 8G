@@ -41,3 +41,9 @@ chroot /mnt/
 grub2-mkconfig -o /boot/grub2/grub.cfg
 И снова обновляем образ initrd
 cd /boot ; for i in `ls initramfs-*img`; do dracut -v $i `echo $i|sed "s/initramfs-//g;s/.img//g"` --force; done
+
+Reboot
+
+lvremove /dev/vg_root/lv_root
+vgremove /dev/vg_root
+pvremove /dev/sdb
